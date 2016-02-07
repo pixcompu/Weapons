@@ -9,15 +9,15 @@ import android.media.MediaPlayer;
 public abstract class Weapon {
 
     protected Context context;
-    protected MediaPlayer mediaPlayer;
+    protected MediaPlayer mMediaPlayer;
 
     public Weapon(Context context) {
         this.context = context;
-        this.mediaPlayer = MediaPlayer.create(context, getSound());
+        this.mMediaPlayer = MediaPlayer.create(context, getAttackSound());
     }
 
     public abstract void start();
     public abstract void attack();
     public abstract void finish();
-    public abstract int getSound();
+    public abstract int getAttackSound();
 }
