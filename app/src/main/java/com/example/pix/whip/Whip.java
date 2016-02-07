@@ -8,7 +8,7 @@ import android.media.MediaPlayer;
  */
 public class Whip extends SensorWeapon {
 
-    private float lastX, lastY, lastZ;
+    private float mLastX, mLastY, mLastZ;
     private final int WHIP_SPEED = 2900;
     private final int SWING_SPEED = 750;
     private boolean isAttackMode;
@@ -72,20 +72,20 @@ public class Whip extends SensorWeapon {
         mMediaPlayer.stop();
         mMediaPlayer.release();
         mMediaPlayer = null;
-        mMediaPlayer = MediaPlayer.create(context, trackID);
+        mMediaPlayer = MediaPlayer.create(mContext, trackID);
     }
 
     private void setOldCoordinates(float x, float y, float z) {
-        this.lastX = x;
-        this.lastY = y;
-        this.lastZ = z;
+        this.mLastX = x;
+        this.mLastY = y;
+        this.mLastZ = z;
     }
 
     private float getSpeed(float x, float y, float z, long currentTime, long lastUpdateTime) {
         final int UNIT = 10000;
 
         long diffTime = currentTime - lastUpdateTime;
-        float distance = Math.abs(x + y + z - lastX - lastY - lastZ);
+        float distance = Math.abs(x + y + z - mLastX - mLastY - mLastZ);
 
         return distance / diffTime * UNIT;
     }

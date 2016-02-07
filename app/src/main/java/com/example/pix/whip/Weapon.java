@@ -8,12 +8,12 @@ import android.media.MediaPlayer;
  */
 public abstract class Weapon {
 
-    protected Context context;
+    protected Context mContext;
     protected MediaPlayer mMediaPlayer;
 
-    public Weapon(Context context) {
-        this.context = context;
-        this.mMediaPlayer = MediaPlayer.create(context, getAttackSound());
+    public Weapon(Context mContext) {
+        this.mContext = mContext;
+        this.mMediaPlayer = MediaPlayer.create(mContext, getAttackSound());
     }
 
     public abstract void start();

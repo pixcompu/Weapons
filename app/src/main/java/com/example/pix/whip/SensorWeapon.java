@@ -24,7 +24,7 @@ public abstract class SensorWeapon extends Weapon implements SensorEventListener
     @Override
     public void start() {
         SensorManager sensorManager = (SensorManager)
-                context.getSystemService(Context.SENSOR_SERVICE);
+                mContext.getSystemService(Context.SENSOR_SERVICE);
         Sensor sensorAccelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         sensorManager.registerListener(this, sensorAccelerometer, SensorManager.SENSOR_DELAY_UI);
     }
@@ -32,7 +32,7 @@ public abstract class SensorWeapon extends Weapon implements SensorEventListener
     @Override
     public void finish() {
         SensorManager sensorManager = (SensorManager)
-                context.getSystemService(Context.SENSOR_SERVICE);
+                mContext.getSystemService(Context.SENSOR_SERVICE);
         Sensor sensorAccelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         sensorManager.unregisterListener(this, sensorAccelerometer);
     }
