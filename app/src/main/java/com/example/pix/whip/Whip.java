@@ -13,7 +13,7 @@ public class Whip extends SensorWeapon {
 
     public Whip(Context context) {
         super(context);
-        setUpDefaultValues();
+        setCoordinates(0, 0, 0);
     }
 
     @Override
@@ -32,10 +32,15 @@ public class Whip extends SensorWeapon {
         }
     }
 
+    @Override
+    public int getSound() {
+        return R.raw.whip_sound;
+    }
+
     private void setCoordinates(float x, float y, float z) {
-        lastX = x;
-        lastY = y;
-        lastZ = z;
+        this.lastX = x;
+        this.lastY = y;
+        this.lastZ = z;
     }
 
     private float getSpeed(float x, float y, float z, long currentTime, long lastUpdateTime) {
@@ -47,8 +52,4 @@ public class Whip extends SensorWeapon {
         return distance / diffTime * UNIT;
     }
 
-    private void setUpDefaultValues() {
-        setCoordinates(0, 0, 0);
-        this.mediaPlayer = MediaPlayer.create(context, R.raw.whip_sound);
-    }
 }

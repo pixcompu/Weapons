@@ -13,9 +13,11 @@ public abstract class Weapon {
 
     public Weapon(Context context) {
         this.context = context;
+        this.mediaPlayer = MediaPlayer.create(context, getSound());
     }
 
     public abstract void start();
     public abstract void attack();
     public abstract void finish();
+    public abstract int getSound();
 }

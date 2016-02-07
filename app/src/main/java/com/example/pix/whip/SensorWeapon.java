@@ -16,14 +16,16 @@ public abstract class SensorWeapon extends Weapon implements SensorEventListener
     private final int Y_VALUE_INDEX = 1;
     private final int Z_VALUE_INDEX = 2;
 
-
     public SensorWeapon(Context context) {
         super(context);
     }
 
     @Override
     public void start() {
-        setUpSensors();
+        SensorManager sensorManager = (SensorManager)
+                context.getSystemService(Context.SENSOR_SERVICE);
+        Sensor sensorAccelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        sensorManager.registerListener(this, sensorAccelerometer, SensorManager.SENSOR_DELAY_UI);
     }
 
     @Override
@@ -50,13 +52,6 @@ public abstract class SensorWeapon extends Weapon implements SensorEventListener
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {}
 
-    protected void setUpSensors() {
-        SensorManager sensorManager = (SensorManager)
-                context.getSystemService(Context.SENSOR_SERVICE);
-        Sensor sensorAccelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-        sensorManager.registerListener(this, sensorAccelerometer, SensorManager.SENSOR_DELAY_UI);
-    }
-
     protected boolean isValidLatency(long currentTime) {
         final int MIN_LATENCY_ACCEPTABLE = 100;
 
@@ -67,7 +62,6 @@ public abstract class SensorWeapon extends Weapon implements SensorEventListener
     protected abstract void proccessCoordinates(float x, float y, float z, long currentTime, long lastUpdateTime);
 
     private void proccess(SensorEvent event){
-
         long currentTime = System.currentTimeMillis();
         if( isValidLatency(currentTime) ){
             float[] coordinates = event.values;
