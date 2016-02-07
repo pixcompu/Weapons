@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">Whip</string>
+    <string name="app_name">Azotador</string>
+    <string name="defaultText">¡Azota a alguien!</string>
 </resources>

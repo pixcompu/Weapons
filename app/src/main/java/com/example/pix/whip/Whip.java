@@ -9,14 +9,16 @@ import android.media.MediaPlayer;
 public class Whip extends SensorWeapon {
 
     private float mLastX, mLastY, mLastZ;
-    private final int WHIP_SPEED = 2900;
-    private final int SWING_SPEED = 750;
+    private final int WHIP_SPEED = 2750;
+    private final int SWING_SPEED = 700;
     private boolean isAttackMode;
+    private static int times;
 
     public Whip(Context context) {
         super(context);
         setOldCoordinates(0, 0, 0);
-        isAttackMode = true;
+        this.isAttackMode = true;
+        times = 1;
     }
 
     @Override
@@ -51,6 +53,7 @@ public class Whip extends SensorWeapon {
         }
         if( !mMediaPlayer.isPlaying() ){
             mMediaPlayer.start();
+            ((MainActivity)mContext).getCounter().setText("Azote #" + (times++));
         }
         isAttackMode = true;
     }
